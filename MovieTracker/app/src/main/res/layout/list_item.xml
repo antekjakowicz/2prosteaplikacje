@@ -23,18 +23,19 @@
         android:textSize="14sp"/>
 
     <TextView
+        android:id="@+id/opinionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#000"
+        android:layout_marginTop="4dp"
+        android:text="Opinia: Brak" />
+
+    <TextView
         android:id="@+id/ratingTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ocena: -"
         android:textSize="14sp"/>
-
-    <Button
-        android:id="@+id/markWatchedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Oznacz jako obejrzane"
-        android:layout_gravity="end"
-        android:padding="5dp"/>
 
 </LinearLayout>

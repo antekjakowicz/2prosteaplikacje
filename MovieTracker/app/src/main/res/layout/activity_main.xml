@@ -25,6 +25,7 @@
         >
 
         <EditText
+            android:id="@+id/titleEditText"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:hint="Tytuł"
@@ -49,12 +50,14 @@
             >
 
             <RadioButton
+                android:id="@+id/radioDrama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Dramat"
                 />
 
             <RadioButton
+                android:id="@+id/radioComedy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Komedia"
@@ -62,6 +65,7 @@
         </RadioGroup>
 
         <EditText
+            android:id="@+id/opinionEditText"
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:hint="Twoja opinia..."
@@ -93,6 +97,7 @@
             />
 
         <Button
+            android:id="@+id/addButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
