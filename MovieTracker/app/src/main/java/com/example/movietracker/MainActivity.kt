@@ -73,11 +73,9 @@ class MainActivity : AppCompatActivity() {
             val exists = movieList.any { it.title == title }
             if (exists) {
                 Toast.makeText(this, "Film o tym tytule już istnieje!", Toast.LENGTH_SHORT).show()
-                Log.d("MainActivity", "Nie dodano filmu, ponieważ już istnieje: $title")
             } else {
                 val newMovie = Movie(title, genre, rating, opinion)
                 movieList.add(newMovie)
-                Log.d("MainActivity", "Aktualna lista filmów: $movieList")
                 adapter.notifyDataSetChanged()
                 saveMovies()
             }
@@ -91,8 +89,6 @@ class MainActivity : AppCompatActivity() {
         val json = gson.toJson(movieList)
         val file = File(filesDir, "movies.json")
         file.writeText(json)
-
-        Log.d("MainActivity", "Zapisano filmy: $json")
     }
 
     private fun loadMovies(){
@@ -105,10 +101,6 @@ class MainActivity : AppCompatActivity() {
             movieList.clear()
             movieList.addAll(loadedMovies)
             adapter.notifyDataSetChanged()
-            Log.d("MainActivity", "Załadowane filmy: $movieList")
-        }
-        else {
-            Log.d("MainActivity", "Plik movies.json nie istnieje. Lista jest pusta.")
         }
     }
 }
