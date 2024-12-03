@@ -108,15 +108,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recycler View!"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:layout_marginTop="10dp"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_height="match_parent"
