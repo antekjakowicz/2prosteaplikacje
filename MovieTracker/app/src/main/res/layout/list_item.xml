@@ -8,9 +8,33 @@
     >
 
     <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tytuł"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/genreTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gatunek"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/ratingTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ocena: -"
+        android:textSize="14sp"/>
+
+    <Button
+        android:id="@+id/markWatchedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nazwa"
-        />
+        android:text="Oznacz jako obejrzane"
+        android:layout_gravity="end"
+        android:padding="5dp"/>
 
 </LinearLayout>
