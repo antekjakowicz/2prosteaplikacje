@@ -17,6 +17,7 @@
         android:textStyle="bold" />
 
     <EditText
+        android:id="@+id/distanceEditText"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -26,6 +27,7 @@
         android:textAlignment="center"
         />
     <EditText
+        android:id="@+id/timeEditText"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -35,6 +37,7 @@
         android:textAlignment="center"
         />
     <EditText
+        android:id="@+id/caloriesEditText"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -45,6 +48,7 @@
         />
 
     <TextView
+        android:id="@+id/intensivityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Intensywność: -"
@@ -73,22 +77,26 @@
         />
 
     <RadioGroup
+        android:id="@+id/typeOfActivityRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
         >
         <RadioButton
+            android:id="@+id/walkRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Spacer"
             />
         <RadioButton
+            android:id="@+id/runRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bieg"
             />
         <RadioButton
+            android:id="@+id/swimRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pływanie"
@@ -96,6 +104,7 @@
     </RadioGroup>
 
     <Button
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Zapisz"
@@ -104,7 +113,8 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 
