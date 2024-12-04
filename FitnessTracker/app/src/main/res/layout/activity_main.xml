@@ -18,37 +18,37 @@
 
     <EditText
         android:id="@+id/distanceEditText"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:hint="Dystans"
+        android:hint="Dystans(Metry)"
         android:inputType="text"
         android:layout_gravity="center"
         android:textAlignment="center"
         />
     <EditText
         android:id="@+id/timeEditText"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:hint="Czas"
+        android:hint="Czas(Minuty)"
         android:inputType="text"
         android:layout_gravity="center"
         android:textAlignment="center"
         />
     <EditText
         android:id="@+id/caloriesEditText"
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:hint="Kalorie"
+        android:hint="Kalorie(kalorie)"
         android:inputType="text"
         android:layout_gravity="center"
         android:textAlignment="center"
         />
 
     <TextView
-        android:id="@+id/intensivityTextView"
+        android:id="@+id/intensityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Intensywność: -"
@@ -58,7 +58,7 @@
         />
 
     <SeekBar
-        android:id="@+id/intensivitySeekBar"
+        android:id="@+id/intensitySeekBar"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:min="0"

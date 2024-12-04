@@ -1,4 +1,4 @@
-package com.example.movietracker
+package com.example.fitnesstracker
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,24 +6,22 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movietracker.Activity
+import com.example.movietracker.ActivityAdapter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var adapter: MovieAdapter
-    private val movieList = mutableListOf<Movie>()
+    private lateinit var adapter: ActivityAdapter
+    private val activityList = mutableListOf<Activity>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,75 +29,85 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MovieAdapter(movieList)
+        adapter = ActivityAdapter(activityList)
         recyclerView.adapter = adapter
         Log.d("MainActivity", "Adapter ustawiony: ${adapter}")
 
+        val intensitySeekBar = findViewById<SeekBar>(R.id.intensitySeekBar)
+        val intensityTextView = findViewById<TextView>(R.id.intensityTextView)
 
+        intensitySeekBar.progress = 0
 
-        var seekBar = findViewById<SeekBar>(R.id.seekBar)
-        val myRatingTextView = findViewById<TextView>(R.id.myRatingTextView)
-
-        seekBar.progress = 0
-
-        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+        intensitySeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             @SuppressLint("SetTextI18n")
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                myRatingTextView.text = ("Twoja ocena: "+(progress+1).toString())
+                intensityTextView.text = "Intensywność: ${progress + 1}"
             }
 
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
         })
 
-
-        findViewById<Button>(R.id.addButton).setOnClickListener{
-            addMovie()
+        findViewById<Button>(R.id.saveButton).setOnClickListener {
+            saveActivity()
         }
 
-        loadMovies()
+        loadActivities()
     }
 
-    private fun addMovie() {
-        val title = findViewById<EditText>(R.id.titleEditText).text.toString()
-        val genre = if(findViewById<RadioButton>(R.id.radioDrama).isChecked) "Dramat" else "Komedia"
-        val rating = findViewById<SeekBar>(R.id.seekBar).progress + 1
-        val opinion = findViewById<EditText>(R.id.opinionEditText).text.toString()
+    private fun saveActivity() {
+        val distanceString = findViewById<EditText>(R.id.distanceEditText).text.toString()
+        val distance = distanceString.toIntOrNull() ?: 0
 
-        if (title.isNotEmpty()) {
-            val exists = movieList.any { it.title == title }
-            if (exists) {
-                Toast.makeText(this, "Film o tym tytule już istnieje!", Toast.LENGTH_SHORT).show()
-            } else {
-                val newMovie = Movie(title, genre, rating, opinion)
-                movieList.add(newMovie)
-                adapter.notifyDataSetChanged()
-                saveMovies()
-            }
+        val timeString = findViewById<EditText>(R.id.timeEditText).text.toString()
+        val time = timeString.toIntOrNull() ?: 0
+
+        val caloriesString = findViewById<EditText>(R.id.caloriesEditText).text.toString()
+        val calories = caloriesString.toIntOrNull() ?: 0
+
+        val activityType = when {
+            findViewById<RadioButton>(R.id.walkRadioButton).isChecked -> "Spacer"
+            findViewById<RadioButton>(R.id.runRadioButton).isChecked -> "Bieg"
+            findViewById<RadioButton>(R.id.swimRadioButton).isChecked -> "Pływanie"
+            else -> "Brak"
+        }
+
+        val intensity = findViewById<SeekBar>(R.id.intensitySeekBar).progress + 1
+
+        if (activityType != "Brak") {
+            val newActivity = Activity(
+                distance = distance.toString(),
+                time = time.toString(),
+                calories = calories.toString(),
+                intensity = intensity.toString(),
+                activity = activityType
+            )
+
+
+            activityList.add(newActivity)
+            adapter.notifyDataSetChanged()
+            saveActivities()
         } else {
-            Toast.makeText(this, "Wpisz tytuł", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Wypełnij wszystkie pola!", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun saveMovies() {
+    private fun saveActivities() {
         val gson = Gson()
-        val json = gson.toJson(movieList)
-        val file = File(filesDir, "movies.json")
+        val json = gson.toJson(activityList)
+        val file = File(filesDir, "activities.json")
         file.writeText(json)
     }
 
-    private fun loadMovies(){
-        val file = File(filesDir, "movies.json")
-        if (file.exists()){
+    private fun loadActivities() {
+        val file = File(filesDir, "activities.json")
+        if (file.exists()) {
             val gson = Gson()
             val json = file.readText()
-            val type = object : TypeToken<List<Movie>>() {}.type
-            val loadedMovies: List<Movie> = gson.fromJson(json, type)
-            movieList.clear()
-            movieList.addAll(loadedMovies)
+            val type = object : TypeToken<List<Activity>>() {}.type
+            val loadedActivities: List<Activity> = gson.fromJson(json, type)
+            activityList.clear()
+            activityList.addAll(loadedActivities)
             adapter.notifyDataSetChanged()
         }
     }

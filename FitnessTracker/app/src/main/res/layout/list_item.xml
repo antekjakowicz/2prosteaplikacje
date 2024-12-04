@@ -5,37 +5,44 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:layout_marginBottom="4dp"
     >
 
+
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/typeOfActivityTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tytuł"
+        android:text="Nazwa aktywności"
         android:textStyle="bold"
         android:textSize="16sp"/>
 
     <TextView
-        android:id="@+id/genreTextView"
+        android:id="@+id/distanceTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gatunek"
+        android:text="Dystans: -"
         android:textSize="14sp"/>
 
     <TextView
-        android:id="@+id/opinionTextView"
+        android:id="@+id/timeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#000"
-        android:layout_marginTop="4dp"
-        android:text="Opinia: Brak" />
+        android:text="Czas: -"
+        android:textSize="14sp"/>
 
     <TextView
-        android:id="@+id/ratingTextView"
+        android:id="@+id/caloriesTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ocena: -"
+        android:text="Spalone kalorie: -"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/intensivityTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Intensywność: -"
         android:textSize="14sp"/>
 
 </LinearLayout>
